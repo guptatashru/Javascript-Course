@@ -1,0 +1,35 @@
+What is Hoisting?
+Hoisting refers to the process where it appears that all variable/function declarations are moved to the top of their containing scope before code execution.
+
+When does hoisting happen?
+When JS engine executes your code, it creates an execution context.
+Execution context is created in 2 phases:
+1) Memory creation phase 2) Code execution phase
+In the memory creation phase, JS engine scans your entire code and allocates memory to the variables/functions.
+For ‘var’ declared variables, memory is allocated and assigned to undefined.
+For ‘let’ and ‘const’ variables, memory is allocated in script space(stack/heap) which is not accessible and initialised to nothing and are in temporal dead zone.
+
+console.log(x); // Output: undefined
+var x = 5;
+console.log(x); // Output: 5
+
+Variable x is hoisted that means it is allocated memory and initialised to undefined in the memory creation phase of execution context.
+
+console.log(x); // Output:Reference error: Cannot access ‘x’ before initialisation
+let x = 5;
+console.log(x); // Output: 5
+
+Variables created using var keyword will have the value of undefined where variables created using let and const keywords will be marked as <value unavailable>. Thus, accessing them will cause a ReferenceError preventing you to access them before initialization.
+
+Variable x is hoisted that means it is allocated memory and initialised to undefined in the memory creation phase of execution context.
+Function/variable  declarations are hoisted. Function expressions(arrow functions) are not hoisted.
+
+console.log(bar); // undefined
+bar(); // Uncaught TypeError: bar is not a function
+var bar = function () {
+  console.log('BARRRR');
+};
+
+
+Difference between variable and function hoisting
+Only variable declarations are hoisted. For function declaration, both function declaration and definition is hoisted.
